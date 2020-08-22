@@ -1,0 +1,116 @@
+{% extends "layout/default.html" %}
+{% block content %}
+  <!-- Page Content -->
+  <div class="container">
+
+    <!--div class="row">
+
+            {% for category in categories %}
+                <a href="#" class="list-group-item">{{ category }}</a>
+            {% endfor %}
+    </div-->
+
+
+
+      <div class="col-log-12">
+        <div class="sidebar">
+              <div class="btn-group" role="group" aria-label="First group">
+              {% if subcategories is defined %}
+                  {% for subcategory in subcategories %}
+                    <a type="button" class="btn btn-secondary" href="/productsubs?subcategory={{ subcategory }}">{{ subcategory }}</a>
+                  {% endfor %}
+              {% endif %}
+              </div>
+        </div>
+
+        <div class="row" id="products-container">
+            {% for product in products %}
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="image-container">
+                  <a href="#"><img class="card-img-top" src="{{url_for('static', filename='imgs/'+ product['image'])}}" alt=""></a>
+                    </div>
+                  <div class="card-body">
+                    <h4 class="card-title">
+                      <a href="#">{{product['title']}}</a>
+                    </h4>
+                    <h5>{{ product['price'] }}</h5>
+                    <p class="card-text">{{product['description']}}</p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div id="product-template" class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="image-container">
+                  <a href="#"><img class="card-img-top" src="" alt=""></a>
+                    </div>
+                  <div class="card-body">
+                    <h4 class="card-title">
+                      <a href="#"></a>
+                    </h4>
+                    <h5></h5>
+                    <p class="card-text"></p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                  </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+<button id="togglechat-btn" class="open-button togglechat-btn">Chat</button>
+
+<div class="chat-popup" id="my-form">
+  <form  id ="chat-form" class="form-container">
+    <button id="close-chat-btn" class="togglechat-btn" >X</button>
+    <div class="parent-chat-container">
+         <div id="chat-container" class="panel-body msg_container_base">
+        </div>
+    </div>
+
+    <div class="panel-footer">
+      <div class="input-group">
+          <input id="message" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />
+          <span class="input-group-btn">
+          <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
+          </span>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div id="msg-sent-template" class="row msg_container base_sent hidden">
+    <div class="col-md-10 col-xs-10">
+        <div class="messages msg_sent"> <p></p>
+        </div>
+    </div>
+</div>
+
+<div id="msg-received-template" class="row msg_container base_receive hidden">
+    <div class="col-md-10 col-xs-10">
+            <div class="messages msg_receive">
+                <p></p>
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}

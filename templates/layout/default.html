@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <title>{% block title %}{% endblock %} Webshop</title>
+    {% endblock %}
+
+      <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/lib/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="/static/lib/css/mdb.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="/static/lib/js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="/static/lib/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="/static/lib/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="static/lib/js/mdb.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+
+
+
+</head>
+<body>
+  <!-- Navigation -->
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
+  <a class="navbar-brand" href="/"><i class="fas fa-home"></i></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+    aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+   <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/products?category=book">Books
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/products?category=clothes">Clothes
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/products?category=laptop">Laptops</a>
+      </li>
+    </ul>
+
+
+    <form class="form-inline">
+      <div class="md-form my-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      </div>
+    </form>
+
+    <ul class="navbar-nav ml-auto">
+          {% if current_user.is_authenticated %}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i>  {{ current_user.username }} </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+          <a class="dropdown-item" href="#">My account</a>
+          <a class="dropdown-item" href="/logout">Log out</a>
+            <input id="user-name" type="hidden" value="{{ current_user.username }}" />
+        </div>
+      </li>
+
+    {% endif %}
+    </ul>
+  </div>
+</nav>
+<!--/.Navbar -->
+
+    {% block content %}{% endblock %}
+    <script type="text/javascript" src="/static/js/index.js"></script>
+    <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright Chat based webstore</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+</body>
+</html>

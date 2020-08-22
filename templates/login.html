@@ -1,0 +1,45 @@
+{% extends "layout/default.html" %}
+{% block title %}Login{% endblock %}
+
+
+{% block content %}
+  <div class="container">
+       <div class="row vertical-center">
+
+         <div class="col-md-8 center text-center ">
+      {% with messages = get_flashed_messages() %}
+         {% if messages %}
+               {% for message in messages %}
+                  <div class="alert alert-danger"  role="alert">
+                    {{ message }}
+                  </div>
+               {% endfor %}
+
+         {% endif %}
+      {% endwith %}
+
+
+        <form method="POST" action="/validate_login" />
+            <div class="input-group mb-3">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input type="text" name="username" class="form-control input_user" value="" placeholder="username">
+            </div>
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input type="password" name="password" class="form-control input_pass" value="" placeholder="password">
+            </div>
+            <button type="submit" class="btn btn-success">Login</button>
+            <p>Not a member yet?
+              <a href="signup">Sign up</a>
+          </p>
+        </form>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

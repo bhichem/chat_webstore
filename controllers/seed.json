@@ -1,0 +1,17 @@
+{
+  "Users": [{
+      "username": "marios",
+      "password": "123"
+  },
+  {
+      "username": "amey",
+      "password": "123"
+  },
+  {
+      "username": "hichem",
+      "password": "123"
+  }],
+  "Products": [{
+
+  }]
+}

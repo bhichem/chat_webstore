@@ -1,0 +1,82 @@
+{% extends "layout/default.html" %}
+{% block title %}User details{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+
+{% block content %}
+
+{% if error %}
+<h3>
+  {{ error }}
+</h3>
+  {% endif %}
+  <div class="container">
+    <div class="row">
+      <div class="alert-container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success" id="success-alert" role="alert">
+          {{ message }}
+        </div>
+        {% endfor %}
+
+        {% endif %}
+        {% endwith %}
+      </div>
+
+      <div class="col-sm-12">
+        <div class="row">
+
+
+        </div>
+      </div>
+      
+    </div>
+    <div class="row">
+      <form action="{{ url_for('post_details') }}" method="post" enctype="multipart/form-data">
+        <div class="md-form">
+          <select id="gender" name="gender">
+            <option value="male">male</option>
+            <option value="female">female</option>
+          </select>
+        </div>
+          <div class="md-form">
+          <textarea class="form-control" id="about" placeholder="about yourself" name="about" rows="4"></textarea>
+        </div>
+        <div class="md-form">
+          <textarea class="form-control" id="about" placeholder="about yourself" name="about" rows="4"></textarea>
+        </div>
+        <input class="form-control" id="lexicon_id" name="lexicon" value="{{lexicon_words}}" type="hidden" />
+
+        <div class="md-form">
+          <input id="file-id" type="file" name="lmtext" />
+        </div>
+        <div class="md-form">
+          <input type="checkbox" class="form-check-input" id="use-db" name="use_db">
+          <label class="form-check-label" for="use-db">Use database</label>
+        </div>
+
+
+            <div class="md-form mt-0">
+                <input type="email" id="materialRegisterFormEmail" class="form-control">
+                <label for="materialRegisterFormEmail">Job</label>
+            </div>
+
+
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="sharedata">
+                <label class="form-check-label" for="sharedata">Agree to share </label>
+            </div>
+
+            <button class="btn btn-info btn-block" type="submit">Submit</button>
+
+      </form>
+
+    </div>
+
+
+  </div>
+  {% endblock %}
