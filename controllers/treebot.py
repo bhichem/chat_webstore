@@ -39,25 +39,12 @@ class Chatbot():
 
         importer = JsonImporter()
 
-        with open(dir + 'test2.json', 'r') as f:
+        with open(dir + 'tree.json', 'r') as f:
             data = json.load(f)
             r = json.dumps(data)
             self.root = importer.import_(r)
 
         self.current_node = self.root
-        #self.clean(self.root)
-        #self.export_tree('test2.json')
-
-    def clean(self, node):
-        for child in node.children:
-            keywords =[]
-            c_keys = list(set(child.keywords))
-            c_keys.sort()
-            for keyword in c_keys:
-                if len(keyword) >= 2:
-                    keywords.append(''.join([i for i in keyword if i.isalpha()]))
-            child.keywords = keywords
-            self.clean(child)
 
 
     def export_tree(self, file_name):
@@ -68,14 +55,13 @@ class Chatbot():
 
     def get_brand_answer(self, brand_array, user_response):
         brand = ''
-        print("we are in the brand")
         user_response = user_response.lower()
         tokens = user_response.split()
         for token in tokens:
             if token in brand_array:
                 brand = token
                 break
-        return "What is your maximum budget?", 'brand', brand, self.current_node.name
+        return 'What is your maximum budget?', 'brand', brand, self.current_node.name
 
     def get_child_node(self, current_node, user_keywords, return_node=None):
         for child in current_node.children:
@@ -107,11 +93,11 @@ class Chatbot():
 
         if self.current_node is None:
             price = self.get_price(user_response)
-            return "Do you like the products suggested?", 'product_price', price, ''
+            return 'Do you like the products suggested?', 'product_price', price, ''
 
         if self.current_node.name == "question3":
             price = self.get_price(user_response)
-            return "check if you like any of the suggested products", 'price_answer', price
+            return 'check if you like any of the suggested products', 'price_answer', price
 
         current_node = self.get_child_node(self.current_node, stem_tokens((user_response.lower().split(' '))))
 
